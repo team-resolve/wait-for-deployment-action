@@ -20,7 +20,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: team-resolve/wait-for-deployment-action@v3.0.1
+      - uses: team-resolve/wait-for-deployment-action@v3.2.0
         id: deployment
         with:
           github-token: ${{ github.token }}
