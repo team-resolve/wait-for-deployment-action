@@ -1,7 +1,7 @@
 {
   "name": "wait-for-deployment-action",
   "version": "3.0.1",
-  "repo": "ssdh233/wait-for-deployment-action",
+  "repo": "team-resolve/wait-for-deployment-action",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.5",
