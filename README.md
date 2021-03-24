@@ -12,7 +12,9 @@ creates deployments on each push.
 
 ```yml
 name: Test
-on: [push]
+on:
+  pull_request:
+    
 
 jobs:
   test:
@@ -23,6 +25,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           environment: Preview
+          sha: ${{ github.event.pull_request.head.sha }}
 
       - run: echo "Deployed to: ${{ steps.deployment.outputs.url }}"
 ```
@@ -44,6 +47,11 @@ The number of seconds after which to give up with an error. Default: 30.
 
 ### `interval`
 The number of seconds to wait between polls to the deployments API. Default: 5.
+
+### `sha`
+
+The commit sha to check deployments against. E.g.: `${{ github.event.pull_request.head.sha || github.sha }}`
+Defaults to: `github.context.sha`
 
 ## Outputs
 

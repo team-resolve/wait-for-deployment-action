@@ -5,7 +5,8 @@ const options = {
   token: core.getInput('github-token'),
   environment: core.getInput('environment'),
   timeout: core.getInput('timeout'),
-  interval: core.getInput('interval')
+  interval: core.getInput('interval'),
+  shaInput: core.getInput('sha')
 }
 
 waitForDeployment(options)
@@ -21,12 +22,13 @@ async function waitForDeployment (options) {
   const {
     token,
     interval,
-    environment
+    environment,
+    shaInput
   } = options
 
   const timeout = parseInt(options.timeout) || 30
 
-  const { sha } = github.context
+  const sha = shaInput || github.context.sha
   const octokit = github.getOctokit(token)
   const start = Date.now()
 
@@ -37,7 +39,6 @@ async function waitForDeployment (options) {
   }
 
   core.info(`Deployment params: ${JSON.stringify(params, null, 2)}`)
-  // throw new Error('DERP')
 
   let retryCount = 0;
   while (true) {
