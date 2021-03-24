@@ -85,6 +85,6 @@ async function waitForDeployment (options) {
 }
 
 function sleep (seconds) {
-  const ms = (parseInt(seconds) * 1000) || 10000 // default 10 seconds
+  const ms = !!seconds ? parseInt(seconds) * 1000 : 10000 // default 10 seconds
   return new Promise(resolve => setTimeout(resolve, ms))
 }
