@@ -73,9 +73,9 @@ async function waitForDeployment (options) {
       } else {
         core.info(`No statuses with state === "success": "${statuses.map(status => status.state).join('", "')}" (retry: ${retryCount})`)
       }
-
-      await sleep(interval)
     }
+
+    await sleep(interval)
 
     const elapsed = (Date.now() - start) / 1000
     if (elapsed >= timeout) {
@@ -85,6 +85,6 @@ async function waitForDeployment (options) {
 }
 
 function sleep (seconds) {
-  const ms = parseInt(seconds) * 1000 || 1
+  const ms = (parseInt(seconds) * 1000) || 10000 // default 10 seconds
   return new Promise(resolve => setTimeout(resolve, ms))
 }
