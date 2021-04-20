@@ -15,6 +15,7 @@ waitForDeployment(options)
     core.setOutput('url', res.url)
   })
   .catch(error => {
+    core.error(error);
     core.setFailed(error.message)
   })
 
